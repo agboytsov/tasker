@@ -1,0 +1,35 @@
+summary: Создает задачу
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+responses:
+  '200':
+    description: Успешное добавление задачи
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Задача успешно добавлена
+  '400':
+    description: Invalid input
+    schema:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+          example: Created

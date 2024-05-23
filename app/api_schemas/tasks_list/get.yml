@@ -1,0 +1,31 @@
+summary: Возвращает список задач, если они есть
+definitions:
+  Task:
+    type: object
+    properties:
+      title:
+        type: string
+      id:
+        type: integer
+      description:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+responses:
+  200:
+    description: Список всех задач
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/Task'
+  404:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+

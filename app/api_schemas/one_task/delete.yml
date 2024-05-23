@@ -1,0 +1,25 @@
+summary: Delete item by ID
+operationId: deleteItem
+parameters:
+  - name: task_id
+    in: path
+    type: integer
+    required: true
+    description:  ID статьи для удаления
+responses:
+  '200':
+    description: Item deleted successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Item successfully deleted
+  '404':
+    description: Item not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Item could not be found for deletion
