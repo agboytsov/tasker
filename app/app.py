@@ -7,11 +7,11 @@ from api import api
 from front import front
 
 
-def create_app():
+def create_app(config='config.Config'):
     app = Flask(__name__)
 
     # Берем данные конфига, включаем перезагрузку приложения при изменении файлов
-    app.config.from_object('config.Config')
+    app.config.from_object(config)
     app.debug = True
     # Устанавливаем все, связанное с базой, предусматриваем миграции
     database.init_app(app)

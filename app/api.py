@@ -2,6 +2,7 @@ import json
 
 from flasgger import swag_from
 from flask import Blueprint, request
+from sqlalchemy.exc import IntegrityError
 
 from handlers import get_tasks, get_task, update_task, create_task, delete_task
 
@@ -16,9 +17,12 @@ def tasks_list():
     """
     if request.method == "GET":
         tasks = get_tasks()
-        if tasks:
-            return tasks, 200
-        return json.dumps({"error": 'No tasks'}), 404
+        try:
+            if tasks:
+                return tasks, 200
+            return json.dumps({"error": 'No tasks'}), 404
+        except (TypeError, IntegrityError):
+            return json.dumps({"error": 'Wrong request'}), 400
     elif request.method == "POST":
         new_task = create_task(request.json["title"], request.json["description"])
         return new_task

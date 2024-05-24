@@ -10,8 +10,8 @@ from database import db, init_app
 
 @pytest.fixture
 def app():
-    app = create_app()
-    app.config.from_object('config.TestingConfig')
+    app = create_app('config.TestingConfig')
+    # app.config.from_object('config.TestingConfig')
     with app.app_context():
         db.create_all()
         yield app
